@@ -1,4 +1,5 @@
 import { searchBooks } from "./api.js";
+import { addSavedBook } from "./storage.js";
 
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
@@ -71,9 +72,26 @@ function createBookCard(book) {
     year.textContent = "გამოცემის წელი უცნობია";
   }
 
+  const saveButton = document.createElement("button");
+  saveButton.className = "button button--primary book-card__button";
+  saveButton.textContent = "შენახვა";
+
+  saveButton.addEventListener("click", function () {
+    const wasSaved = addSavedBook(book);
+
+    if (wasSaved) {
+      resultsInfo.textContent = "წიგნი წარმატებით შეინახა.";
+      saveButton.textContent = "შენახულია";
+      saveButton.disabled = true;
+    } else {
+      resultsInfo.textContent = "ეს წიგნი უკვე შენახულია.";
+    }
+  });
+
   content.appendChild(title);
   content.appendChild(author);
   content.appendChild(year);
+  content.appendChild(saveButton);
 
   card.appendChild(content);
 
@@ -126,3 +144,4 @@ function handleSearchSubmit(event) {
 searchForm.addEventListener("submit", handleSearchSubmit);
 
 loadBooks("popular books");
+

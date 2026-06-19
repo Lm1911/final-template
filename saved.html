@@ -3,37 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>შენახული — პროექტის სახელი</title>
+
+  <title>MoodShelf — ჩემი ბიბლიოთეკა</title>
+
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
-  <header>
-    <nav>
-      <span class="nav__logo">პროექტის სახელი</span>
-      <div class="nav__links">
-        <a href="index.html">ძიება</a>
-        <a href="saved.html">შენახული</a>
-      </div>
-      <div class="nav__actions">
-        <span id="nav-user"></span>
-        <button id="logout-btn" type="button">გასვლა</button>
-      </div>
-    </nav>
+<body>
+  <header class="header">
+    <div class="header__content">
+      <a class="header__logo" href="index.html">
+        MoodShelf
+      </a>
+
+      <nav class="header__nav" aria-label="მთავარი ნავიგაცია">
+        <a class="header__link" href="index.html">
+          მთავარი
+        </a>
+
+        <a
+          class="header__link header__link--active"
+          href="saved.html"
+        >
+          ჩემი ბიბლიოთეკა
+        </a>
+
+        <a class="header__link" href="login.html">
+          პროფილი
+        </a>
+      </nav>
+    </div>
   </header>
 
   <main>
+    <section class="saved-section">
+      <div class="page-container">
+        <h1 class="section-title">
+          ჩემი ბიბლიოთეკა
+        </h1>
 
-    <section>
-      <h2>შენახული ელემენტები</h2>
-      <p id="saved-empty" hidden>ჯერ არაფერია შენახული.</p>
-      <div id="saved-grid"></div>
+        <p class="results-info" id="saved-info">
+          შენახული წიგნები
+        </p>
+
+        <div
+          class="books-grid"
+          id="saved-books-container"
+        ></div>
+      </div>
     </section>
-
   </main>
 
-  <footer>
-    <!-- footer-ის შიგთავსი -->
+  <footer class="footer">
+    <p class="footer__text">
+      MoodShelf — შენი პირადი წიგნების ბიბლიოთეკა
+    </p>
   </footer>
 
   <script type="module" src="js/saved.js"></script>

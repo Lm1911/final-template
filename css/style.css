@@ -281,3 +281,16 @@ img {
   color: var(--color-muted);
   line-height: 1.4;
 }
+.book-card__button {
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+.book-card__button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+.saved-section {
+  min-height: 75vh;
+  padding: 3rem 0;
+}
