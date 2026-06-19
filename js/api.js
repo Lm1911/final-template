@@ -1,15 +1,28 @@
-const BASE_URL = ''; // შეცვალე შენი API-ს base URL-ით
+const BASE_URL = "https://openlibrary.org/search.json";
 
-export async function fetchData(endpoint) {
-  // fetch, შეამოწმე response.ok, დააბრუნე response.json()
-}
+export async function searchBooks(query, searchType) {
+  let searchParameter = `q=${encodeURIComponent(query)}`;
 
-// localStorage-ის დამხმარე ფუნქციები — იმპორტი გაარ სადაც ჩანაწერები გჭირდება
-export function getSaved() {
-  const raw = localStorage.getItem('savedItems');
-  return raw ? JSON.parse(raw) : [];
-}
+  if (searchType === "title") {
+    searchParameter = `title=${encodeURIComponent(query)}`;
+  }
 
-export function setSaved(items) {
-  localStorage.setItem('savedItems', JSON.stringify(items));
+  if (searchType === "author") {
+    searchParameter = `author=${encodeURIComponent(query)}`;
+  }
+
+  const url =
+    `${BASE_URL}?${searchParameter}` +
+    "&limit=12" +
+    "&fields=key,title,author_name,first_publish_year,cover_i";
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error("წიგნების ჩატვირთვა ვერ მოხერხდა.");
+  }
+
+  const data = await response.json();
+
+  return data.docs;
 }
