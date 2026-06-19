@@ -139,8 +139,7 @@ img {
   font-weight: 700;
 }
 
-.search-form__input,
-.search-form__select {
+.search-form__input {
   width: 100%;
   min-height: 46px;
   padding: 0 0.85rem;
@@ -150,8 +149,7 @@ img {
   background-color: #ffffff;
 }
 
-.search-form__input:focus,
-.search-form__select:focus {
+.search-form__input:focus {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }

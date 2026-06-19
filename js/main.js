@@ -2,7 +2,6 @@ import { searchBooks } from "./api.js";
 
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
-const searchType = document.querySelector("#search-type");
 const booksContainer = document.querySelector("#books-container");
 const loadingMessage = document.querySelector("#loading-message");
 const errorMessage = document.querySelector("#error-message");
@@ -31,6 +30,7 @@ function createBookCard(book) {
 
   if (book.cover_i) {
     const image = document.createElement("img");
+
     image.className = "book-card__image";
     image.src =
       `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`;
@@ -38,11 +38,12 @@ function createBookCard(book) {
 
     card.appendChild(image);
   } else {
-    const imagePlaceholder = document.createElement("div");
-    imagePlaceholder.className = "book-card__placeholder";
-    imagePlaceholder.textContent = "ყდა არ არის";
+    const placeholder = document.createElement("div");
 
-    card.appendChild(imagePlaceholder);
+    placeholder.className = "book-card__placeholder";
+    placeholder.textContent = "ყდა არ არის";
+
+    card.appendChild(placeholder);
   }
 
   const content = document.createElement("div");
@@ -56,20 +57,24 @@ function createBookCard(book) {
   author.className = "book-card__author";
 
   if (book.author_name) {
-    author.textContent = book.author_name.join(", ");
+    author.textContent = book.author_name[0];
   } else {
     author.textContent = "უცნობი ავტორი";
   }
 
   const year = document.createElement("p");
   year.className = "book-card__year";
-  year.textContent = book.first_publish_year
-    ? `პირველი გამოცემა: ${book.first_publish_year}`
-    : "გამოცემის წელი უცნობია";
+
+  if (book.first_publish_year) {
+    year.textContent = `გამოცემის წელი: ${book.first_publish_year}`;
+  } else {
+    year.textContent = "გამოცემის წელი უცნობია";
+  }
 
   content.appendChild(title);
   content.appendChild(author);
   content.appendChild(year);
+
   card.appendChild(content);
 
   return card;
@@ -91,11 +96,11 @@ function renderBooks(books) {
   resultsInfo.textContent = `ნაპოვნია ${books.length} წიგნი`;
 }
 
-async function loadBooks(query, type) {
+async function loadBooks(query) {
   showLoading();
 
   try {
-    currentBooks = await searchBooks(query, type);
+    currentBooks = await searchBooks(query);
     renderBooks(currentBooks);
   } catch (error) {
     showError(error.message);
@@ -115,39 +120,9 @@ function handleSearchSubmit(event) {
     return;
   }
 
-  loadBooks(query, searchType.value);
-}
-
-function debounce(callback, delay) {
-  let timerId;
-
-  return function () {
-    clearTimeout(timerId);
-
-    timerId = setTimeout(function () {
-      callback();
-    }, delay);
-  };
-}
-
-const delayedSearch = debounce(function () {
-  const query = searchInput.value.trim();
-
-  if (query.length >= 2) {
-    loadBooks(query, searchType.value);
-  }
-}, 600);
-
-function handleSearchTypeChange() {
-  const query = searchInput.value.trim();
-
-  if (query.length >= 2) {
-    loadBooks(query, searchType.value);
-  }
+  loadBooks(query);
 }
 
 searchForm.addEventListener("submit", handleSearchSubmit);
-searchInput.addEventListener("input", delayedSearch);
-searchType.addEventListener("change", handleSearchTypeChange);
 
-loadBooks("classic literature", "all");
+loadBooks("popular books");
