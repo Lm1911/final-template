@@ -30,3 +30,13 @@ export function addSavedBook(book) {
 
   return true;
 }
+
+export function removeSavedBook(bookKey) {
+  const savedBooks = getSavedBooks();
+
+  const updatedBooks = savedBooks.filter(function (book) {
+    return book.key !== bookKey;
+  });
+
+  saveBooks(updatedBooks);
+}

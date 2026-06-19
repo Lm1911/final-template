@@ -292,3 +292,7 @@ img {
   cursor: not-allowed;
   opacity: 0.65;
 }
+.saved-section {
+  min-height: 75vh;
+  padding: 3rem 0;
+}
