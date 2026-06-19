@@ -1,35 +1,244 @@
-/* ===== custom properties ===== */
 :root {
-  /* ფერების პალიტრა და დაშორებების ცვლადები */
+  --color-primary: #6c4ed9;
+  --color-primary-dark: #5035b5;
+  --color-background: #f5f4fa;
+  --color-surface: #ffffff;
+  --color-text: #24212d;
+  --color-muted: #6c6875;
+  --color-border: #ddd9e7;
+  --color-error: #b42318;
+  --spacing-main: 1.25rem;
+  --border-radius: 0.75rem;
+  --shadow-card: 0 8px 24px rgba(42, 35, 73, 0.1);
 }
 
-/* ===== reset ===== */
+* {
+  box-sizing: border-box;
+}
 
-/* ===== header ===== */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
 
-/* ===== nav — Flexbox აქ გამოიყენე ===== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-/* ===== login გვერდი ===== */
+img {
+  display: block;
+  max-width: 100%;
+}
 
-/* ===== main ===== */
+.page-container {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+}
 
-/* ===== form ===== */
+.header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
 
-/* ===== results grid — CSS Grid აქ გამოიყენე ===== */
+.header__content {
+  width: min(100% - 2rem, 1200px);
+  min-height: 72px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
 
-/* ===== card ===== */
+.header__logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
 
-/* ===== saved grid — CSS Grid აქ გამოიყენე ===== */
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
 
-/* ===== ჩატვირთვის და შეცდომის მდგომარეობები ===== */
+.header__link {
+  color: var(--color-muted);
+  font-weight: 600;
+}
 
-/* ===== footer ===== */
+.header__link:hover,
+.header__link--active {
+  color: var(--color-primary);
+}
 
-/* ===== რესპონსიული ===== */
+.hero {
+  padding: 5rem 0;
+  text-align: center;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+}
+
+.hero__content {
+  max-width: 760px;
+}
+
+.hero__subtitle {
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.hero__title {
+  margin: 0.5rem 0 1rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.hero__description {
+  margin: 0 auto;
+  max-width: 650px;
+  line-height: 1.7;
+}
+
+.search-section {
+  padding: 3rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-top: 0;
+}
+
+.search-form {
+  max-width: 850px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  display: flex;
+  align-items: end;
+  gap: 1rem;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-card);
+}
+
+.search-form__group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.search-form__label {
+  font-weight: 700;
+}
+
+.search-form__input,
+.search-form__select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 0.85rem;
+  font: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+
+.search-form__input:focus,
+.search-form__select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.button {
+  min-height: 46px;
+  padding: 0.7rem 1.25rem;
+  border: 0;
+  border-radius: 0.5rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button--primary {
+  color: #ffffff;
+  background-color: var(--color-primary);
+}
+
+.button--primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.results-info,
+.message {
+  text-align: center;
+}
+
+.message--loading {
+  color: var(--color-primary);
+}
+
+.message--error {
+  color: var(--color-error);
+}
+
+.books-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--spacing-main);
+}
+
+.footer {
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--color-muted);
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__text {
+  margin: 0;
+}
+
 @media (max-width: 600px) {
-  /* მობილური */
+  .header__content {
+    padding: 1rem 0;
+    flex-direction: column;
+  }
+
+  .header__nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    padding: 3.5rem 0;
+  }
+
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (min-width: 1024px) {
-  /* დესქტოპი */
+  .hero {
+    padding: 6rem 0;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
