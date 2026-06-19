@@ -144,3 +144,4 @@ function handleSearchSubmit(event) {
 searchForm.addEventListener("submit", handleSearchSubmit);
 
 loadBooks("popular books");
+
