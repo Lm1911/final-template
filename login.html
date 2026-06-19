@@ -3,24 +3,156 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>შესვლა — პროექტის სახელი</title>
+
+  <title>MoodShelf — პროფილი</title>
+
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+  <header class="header">
+    <div class="header__content">
+      <a class="header__logo" href="index.html">
+        MoodShelf
+      </a>
+
+      <nav class="header__nav" aria-label="მთავარი ნავიგაცია">
+        <a class="header__link" href="index.html">
+          მთავარი
+        </a>
+
+        <a class="header__link" href="saved.html">
+          ჩემი ბიბლიოთეკა
+        </a>
+
+        <a
+          class="header__link header__link--active"
+          href="login.html"
+        >
+          პროფილი
+        </a>
+      </nav>
+    </div>
+  </header>
 
   <main>
+    <section class="profile-section">
+      <div class="page-container">
+        <h1 class="section-title">
+          მკითხველის პროფილი
+        </h1>
 
-    <form id="login-form">
-      <!-- input type="text" ვალიდაციის ატრიბუტებით -->
-      <label for="name-input">შენი სახელი</label>
-      <input id="name-input" type="text" name="name" required minlength="2" autocomplete="name">
+        <form class="profile-form" id="profile-form">
+          <div class="profile-form__group">
+            <label for="profile-name">
+              სახელი
+            </label>
 
-      <p id="login-error" hidden></p>
+            <input
+              type="text"
+              id="profile-name"
+              name="name"
+              minlength="2"
+              required
+            >
+          </div>
 
-      <button type="submit">დაწყება →</button>
-    </form>
+          <div class="profile-form__group">
+            <label for="profile-email">
+              ელფოსტა
+            </label>
 
+            <input
+              type="email"
+              id="profile-email"
+              name="email"
+              required
+            >
+          </div>
+
+          <div class="profile-form__group">
+            <label for="reading-goal">
+              თვეში რამდენი წიგნის წაკითხვა გინდა?
+            </label>
+
+            <input
+              type="number"
+              id="reading-goal"
+              name="goal"
+              min="1"
+              max="20"
+              required
+            >
+          </div>
+
+          <div class="profile-form__group">
+            <label for="favorite-genre">
+              საყვარელი ჟანრი
+            </label>
+
+            <select
+              id="favorite-genre"
+              name="genre"
+              required
+            >
+              <option value="">აირჩიე ჟანრი</option>
+              <option value="fantasy">ფენტეზი</option>
+              <option value="mystery">დეტექტივი</option>
+              <option value="history">ისტორია</option>
+              <option value="science">მეცნიერება</option>
+            </select>
+
+            <p id="genre-message"></p>
+          </div>
+
+          <div class="profile-form__checkbox">
+            <input
+              type="checkbox"
+              id="notifications"
+              name="notifications"
+            >
+
+            <label for="notifications">
+              მინდა ახალი წიგნების შეტყობინებები
+            </label>
+          </div>
+
+          <div class="profile-form__group">
+            <label for="profile-note">
+              დამატებითი ინფორმაცია
+            </label>
+
+            <textarea
+              id="profile-note"
+              name="note"
+              rows="4"
+              maxlength="200"
+            ></textarea>
+          </div>
+
+          <button
+            class="button button--primary"
+            type="submit"
+          >
+            პროფილის შენახვა
+          </button>
+
+          <p
+            class="form-feedback"
+            id="form-feedback"
+            role="status"
+            hidden
+          ></p>
+        </form>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <p class="footer__text">
+      MoodShelf — შენი პირადი წიგნების ბიბლიოთეკა
+    </p>
+  </footer>
 
   <script type="module" src="js/login.js"></script>
 </body>

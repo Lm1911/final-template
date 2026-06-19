@@ -1,25 +1,58 @@
-// უკვე ავტორიზებული მომხმარებელი — მთავარ გვერდზე გადამისამართება
-if (localStorage.getItem('user')) {
-  window.location.href = 'index.html';
+const profileForm = document.querySelector("#profile-form");
+const genreSelect = document.querySelector("#favorite-genre");
+const genreMessage = document.querySelector("#genre-message");
+const formFeedback = document.querySelector("#form-feedback");
+
+function saveProfile(profile) {
+  localStorage.setItem(
+    "moodshelf-profile",
+    JSON.stringify(profile)
+  );
 }
 
-document.getElementById('login-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById('name-input').value.trim();
-  const errorEl = document.getElementById('login-error');
-
-  if (!name) {
-    errorEl.textContent = 'გთხოვთ შეიყვანოთ სახელი.';
-    errorEl.hidden = false;
+function handleGenreChange() {
+  if (genreSelect.value === "") {
+    genreMessage.textContent = "";
     return;
   }
 
-  errorEl.hidden = true;
+  const selectedOption =
+    genreSelect.options[genreSelect.selectedIndex];
 
-  // მომხმარებლის სახელი ინახება localStorage-ში, სეტდება სესიური cookie
-  localStorage.setItem('user', name);
-  document.cookie = 'authorized=true; path=/';
+  genreMessage.textContent =
+    `არჩეული ჟანრი: ${selectedOption.textContent}`;
+}
 
-  window.location.href = 'index.html';
-});
+function handleProfileSubmit(event) {
+  event.preventDefault();
+
+  if (!profileForm.checkValidity()) {
+    formFeedback.textContent =
+      "გთხოვ, სწორად შეავსე ყველა სავალდებულო ველი.";
+
+    formFeedback.hidden = false;
+    profileForm.reportValidity();
+    return;
+  }
+
+  const formData = new FormData(profileForm);
+
+  const profile = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    goal: Number(formData.get("goal")),
+    genre: formData.get("genre"),
+    notifications: formData.get("notifications") === "on",
+    note: formData.get("note")
+  };
+
+  saveProfile(profile);
+
+  formFeedback.textContent =
+    "პროფილი წარმატებით შეინახა.";
+
+  formFeedback.hidden = false;
+}
+
+genreSelect.addEventListener("change", handleGenreChange);
+profileForm.addEventListener("submit", handleProfileSubmit);
