@@ -12,10 +12,15 @@
 <body>
   <header class="header">
     <div class="header__content">
-      <a class="header__logo" href="index.html">MoodShelf</a>
+      <a class="header__logo" href="index.html">
+        MoodShelf
+      </a>
 
       <nav class="header__nav" aria-label="მთავარი ნავიგაცია">
-        <a class="header__link header__link--active" href="index.html">
+        <a
+          class="header__link header__link--active"
+          href="index.html"
+        >
           მთავარი
         </a>
 
@@ -33,20 +38,25 @@
   <main>
     <section class="hero">
       <div class="page-container hero__content">
-        <p class="hero__subtitle">იპოვე შენი შემდეგი წიგნი</p>
+        <p class="hero__subtitle">
+          იპოვე შენი შემდეგი წიგნი
+        </p>
 
         <h1 class="hero__title">
           წიგნები ყველა განწყობისთვის
         </h1>
 
         <p class="hero__description">
-          მოძებნე წიგნები სათაურის ან ავტორის მიხედვით და შეინახე
-          საინტერესო წიგნები პირად ბიბლიოთეკაში.
+          მოძებნე წიგნები სათაურის ან ავტორის მიხედვით
+          და შეინახე საინტერესო წიგნები პირად ბიბლიოთეკაში.
         </p>
       </div>
     </section>
 
-    <section class="search-section" aria-labelledby="search-title">
+    <section
+      class="search-section"
+      aria-labelledby="search-title"
+    >
       <div class="page-container">
         <h2 id="search-title" class="section-title">
           წიგნების ძებნა
@@ -54,7 +64,10 @@
 
         <form class="search-form" id="search-form">
           <div class="search-form__group">
-            <label class="search-form__label" for="search-input">
+            <label
+              class="search-form__label"
+              for="search-input"
+            >
               წიგნის სახელი ან ავტორი
             </label>
 
@@ -69,23 +82,10 @@
             >
           </div>
 
-          <div class="search-form__group">
-            <label class="search-form__label" for="search-type">
-              ძებნის ტიპი
-            </label>
-
-            <select
-              class="search-form__select"
-              id="search-type"
-              name="search-type"
-            >
-              <option value="all">ყველა</option>
-              <option value="title">სათაური</option>
-              <option value="author">ავტორი</option>
-            </select>
-          </div>
-
-          <button class="button button--primary" type="submit">
+          <button
+            class="button button--primary"
+            type="submit"
+          >
             ძებნა
           </button>
         </form>
