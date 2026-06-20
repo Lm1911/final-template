@@ -9,6 +9,16 @@ const errorMessage = document.querySelector("#error-message");
 const resultsInfo = document.querySelector("#results-info");
 
 let currentBooks = [];
+function createSaveCounter() {
+  let count = 0;
+
+  return function () {
+    count = count + 1;
+    return count;
+  };
+}
+
+const increaseSaveCount = createSaveCounter();
 
 function showLoading() {
   loadingMessage.hidden = false;
@@ -77,16 +87,20 @@ function createBookCard(book) {
   saveButton.textContent = "შენახვა";
 
   saveButton.addEventListener("click", function () {
-    const wasSaved = addSavedBook(book);
+  const wasSaved = addSavedBook(book);
 
-    if (wasSaved) {
-      resultsInfo.textContent = "წიგნი წარმატებით შეინახა.";
-      saveButton.textContent = "შენახულია";
-      saveButton.disabled = true;
-    } else {
-      resultsInfo.textContent = "ეს წიგნი უკვე შენახულია.";
-    }
-  });
+  if (wasSaved) {
+    const savedCount = increaseSaveCount();
+
+    resultsInfo.textContent =
+      `წიგნი შეინახა. ამ სესიაში შენახულია: ${savedCount}`;
+
+    saveButton.textContent = "შენახულია";
+    saveButton.disabled = true;
+  } else {
+    resultsInfo.textContent = "ეს წიგნი უკვე შენახულია.";
+  }
+});
 
   content.appendChild(title);
   content.appendChild(author);
