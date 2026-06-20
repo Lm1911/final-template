@@ -1,5 +1,8 @@
 import { searchBooks } from "./api.js";
-import { addSavedBook } from "./storage.js";
+import {
+  addSavedBook,
+  getSavedBooks
+} from "./storage.js";
 
 const searchForm = document.querySelector("#search-form");
 const searchInput = document.querySelector("#search-input");
@@ -9,6 +12,7 @@ const errorMessage = document.querySelector("#error-message");
 const resultsInfo = document.querySelector("#results-info");
 
 let currentBooks = [];
+
 function createSaveCounter() {
   let count = 0;
 
@@ -77,30 +81,45 @@ function createBookCard(book) {
   year.className = "book-card__year";
 
   if (book.first_publish_year) {
-    year.textContent = `გამოცემის წელი: ${book.first_publish_year}`;
+    year.textContent =
+      `გამოცემის წელი: ${book.first_publish_year}`;
   } else {
     year.textContent = "გამოცემის წელი უცნობია";
   }
 
   const saveButton = document.createElement("button");
-  saveButton.className = "button button--primary book-card__button";
-  saveButton.textContent = "შენახვა";
+  saveButton.className =
+    "button button--primary book-card__button";
 
-  saveButton.addEventListener("click", function () {
-  const wasSaved = addSavedBook(book);
+  const savedBooks = getSavedBooks();
 
-  if (wasSaved) {
-    const savedCount = increaseSaveCount();
+  const bookIsSaved = savedBooks.some(function (savedBook) {
+    return savedBook.key === book.key;
+  });
 
-    resultsInfo.textContent =
-      `წიგნი შეინახა. ამ სესიაში შენახულია: ${savedCount}`;
-
+  if (bookIsSaved) {
     saveButton.textContent = "შენახულია";
     saveButton.disabled = true;
   } else {
-    resultsInfo.textContent = "ეს წიგნი უკვე შენახულია.";
+    saveButton.textContent = "შენახვა";
   }
-});
+
+  saveButton.addEventListener("click", function () {
+    const wasSaved = addSavedBook(book);
+
+    if (wasSaved) {
+      const savedCount = increaseSaveCount();
+
+      resultsInfo.textContent =
+        `წიგნი შეინახა. ამ სესიაში შენახულია: ${savedCount}`;
+
+      saveButton.textContent = "შენახულია";
+      saveButton.disabled = true;
+    } else {
+      resultsInfo.textContent =
+        "ეს წიგნი უკვე შენახულია.";
+    }
+  });
 
   content.appendChild(title);
   content.appendChild(author);
@@ -125,7 +144,8 @@ function renderBooks(books) {
     booksContainer.appendChild(card);
   });
 
-  resultsInfo.textContent = `ნაპოვნია ${books.length} წიგნი`;
+  resultsInfo.textContent =
+    `ნაპოვნია ${books.length} წიგნი`;
 }
 
 async function loadBooks(query) {
@@ -157,5 +177,4 @@ function handleSearchSubmit(event) {
 
 searchForm.addEventListener("submit", handleSearchSubmit);
 
-loadBooks("popular books");
-
+loadBooks("classic literature");
