@@ -210,6 +210,13 @@ img {
     padding: 1rem 0;
     flex-direction: column;
   }
+  .profile-form {
+  padding: 1rem;
+}
+
+.profile-form .button {
+  width: 100%;
+}
 
   .header__nav {
     width: 100%;
