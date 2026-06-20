@@ -1,29 +1,37 @@
-# საბოლოო პროექტის შაბლონი
+# MoodShelf
 
-ვებ ინჟინერია 2026-ის საბოლოო პროექტის საწყისი სტრუქტურა. გახსენი `index.html` ბრაუზერში და დაიწყე მშენებლობა.
+MoodShelf is a simple web application for searching and saving books.
 
-**პირველ რიგში შეცვალე:**
+## Features
 
-- `BASE_URL` — `js/api.js`-ში შენი API-ს მისამართი
-- `<title>` — სამივე HTML ფაილში შენი პროექტის სახელი
-- ფერების ცვლადები — `css/style.css`-ში
-- გვერდის სახელები საჭიროების შემთხვევაში — `login.html` / `saved.html` შეიძლება გადაარქვა სახელი
+* Search books by title or author
+* Load book information from the Open Library API
+* Display book covers, titles, authors, and publication years
+* Save books to a personal library
+* Remove books from the saved list
+* Save reader profile information
+* Store data in localStorage
+* Responsive design for mobile and desktop screens
 
-**ფაილების სტრუქტურა:**
+## Technologies
 
-```
-შენი-პროექტი/
-├── index.html        ← მთავარი გვერდი
-├── login.html        ← ავტორიზაციის გვერდი (სახელი შეიძლება შეიცვალოს)
-├── saved.html        ← შენახული ელემენტების გვერდი (სახელი შეიძლება შეიცვალოს)
-├── css/
-│   └── style.css
-├── js/
-│   ├── main.js       ← entry point index.html-ისთვის
-│   ├── login.js      ← entry point login.html-ისთვის
-│   ├── saved.js      ← entry point saved.html-ისთვის
-│   └── api.js        ← fetch ლოგიკა + localStorage-ის დამხმარეები
-└── assets/
-```
+* HTML5
+* CSS3
+* JavaScript
+* Open Library API
+* localStorage
+* Git and GitHub
 
-სრული ტექნიკური მოთხოვნები და შეფასების კრიტერიუმები იხილე [პროექტის პირობებში](https://github.com/cu-cst-web1-2026-geo/materials/blob/main/lecture_13/final_project/README.md).
+## Pages
+
+* `index.html` — book search
+* `saved.html` — saved books
+* `login.html` — reader profile
+
+## How to run
+
+Open the project with VS Code and use the Live Server extension.
+
+## Author
+
+Levani Magradze
