@@ -35,3 +35,6 @@ Open the project with VS Code and use the Live Server extension.
 ## Author
 
 Levani Magradze
+
+
+https://6a3d35f6fcb0841983256340--fastidious-semifreddo-583aab.netlify.app
